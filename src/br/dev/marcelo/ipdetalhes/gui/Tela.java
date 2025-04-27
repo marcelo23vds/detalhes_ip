@@ -175,7 +175,7 @@ public class Tela {
 					lblErro.setText("");
 					
 					resultadoIpsDisponiveis = mascara.verificarIpsDisponiveis();
-					lblIpsDisponiveis.setText(resultadoIpsDisponiveis);
+					lblIpsDisponiveis.setText("IPs disponiveis: " + resultadoIpsDisponiveis);
 					lblErro.setText("");
 					
 				}

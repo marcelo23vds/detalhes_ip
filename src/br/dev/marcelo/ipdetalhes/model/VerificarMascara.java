@@ -111,51 +111,18 @@ public class VerificarMascara {
 	}
 	
 	public String verificarIpsDisponiveis() {
-		String ipsDisponiveis = null;
 		
-		if (mascara == 32) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 0";
-        } else if (mascara == 31) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 0";
-        } else if (mascara == 30) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 2";
-        } else if (mascara == 29) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 6";
-        } else if (mascara == 28) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 14";
-        } else if (mascara == 27) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 30";
-        } else if (mascara == 26) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 62";
-        } else if (mascara == 25) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 126";
-        } else if (mascara == 24) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 254";
-        } else if (mascara == 23) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 510";
-        } else if (mascara == 22) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 1022";
-        } else if (mascara == 21) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 2046";
-        } else if (mascara == 20) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 4094";
-        } else if (mascara == 19) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 8190";
-        } else if (mascara == 18) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 16382";
-        } else if (mascara == 17) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 32766";
-        } else if (mascara == 16) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 65534";
-        } else if (mascara == 8) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 16777214";
-        } else if (mascara == 0) {
-            ipsDisponiveis = "Quantidade de endereços IP disponiveis: 4294967294";
-        } else {
-            ipsDisponiveis = "Máscara inválida!";
-        }
+		if (mascara < 0 || mascara > 32) {
+			String mascaraInvalida = "---";
+			return mascaraInvalida;
+			
+		} else {
+			
+			double ipsDisponiveis = 0;
+			ipsDisponiveis = Math.pow(2, (32 - mascara)) - 2;
+			return Double.toString(ipsDisponiveis);
+		}
 		
-		return ipsDisponiveis;
 	}
 	
-}
+} 
