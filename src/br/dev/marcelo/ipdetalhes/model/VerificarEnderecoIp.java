@@ -15,7 +15,7 @@ public class VerificarEnderecoIp {
 		
 		String classe = null;
 		
-		if (primeiroOcteto >= 1 && primeiroOcteto <= 126) {
+		if (primeiroOcteto >= 0 && primeiroOcteto <= 126) {
 			classe = "Classe: A";
 		} else if (primeiroOcteto == 127) {
 			classe = "Reservado para loopback";
