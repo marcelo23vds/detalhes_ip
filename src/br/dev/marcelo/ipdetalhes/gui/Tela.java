@@ -152,31 +152,50 @@ public class Tela {
 					
 				} else {
 							
+//					convertendo as entradas dos usuarios para double para serem verificados os ips digitados
+					
 					double entradaPrimeiroOctetoDouble = Double.parseDouble(entradaPrimeiroOcteto);
-					VerificarEnderecoIp endereco = new VerificarEnderecoIp();
-					endereco.setPrimeiroOcteto(entradaPrimeiroOctetoDouble);
+					double entradaSegundoOctetoDouble = Double.parseDouble(entradaSegundoOcteto);
+					double entradaTerceiroOctetoDouble = Double.parseDouble(entradaTerceiroOcteto);
+					double entradaQuartoOctetoDouble = Double.parseDouble(entradaQuartoOcteto);
 					
-					resultadoClasse = endereco.verificarClasse();
-					lblClasse.setText(resultadoClasse);
-					lblErro.setText("");
+					if (entradaPrimeiroOctetoDouble > 255 || entradaSegundoOctetoDouble > 255 || 
+						entradaTerceiroOctetoDouble > 255 || entradaQuartoOctetoDouble > 255) {
+						
+						lblErro.setText("DIGITE UM IP VÁLIDO!");
+						lblClasse.setText("");
+						lblDecimal.setText("");
+						lblBinario.setText("");
+						lblIpsDisponiveis.setText("");
+						
+					} else {
+						
+						VerificarEnderecoIp endereco = new VerificarEnderecoIp();
+						endereco.setPrimeiroOcteto(entradaPrimeiroOctetoDouble);
+						
+						resultadoClasse = endereco.verificarClasse();
+						lblClasse.setText(resultadoClasse);
+						lblErro.setText("");
+						
+							
+						double entradaMascaraDouble = Double.parseDouble(entradaMascara);
+						VerificarMascara mascara = new VerificarMascara();
+						mascara.setMascara(entradaMascaraDouble);
+						
+						resultadoDecimal = mascara.verificarDecimal();
+						lblDecimal.setText(resultadoDecimal);
+						lblErro.setText("");
+						
+						resultadoBinario = mascara.verificarBinario();
+						lblBinario.setText(resultadoBinario);
+						lblErro.setText("");
+						
+						resultadoIpsDisponiveis = mascara.verificarIpsDisponiveis();
+						lblIpsDisponiveis.setText("Hosts disponiveis: " + resultadoIpsDisponiveis);
+						lblErro.setText("");
+						
+					}
 					
-					
-					
-					double entradaMascaraDouble = Double.parseDouble(entradaMascara);
-					VerificarMascara mascara = new VerificarMascara();
-					mascara.setMascara(entradaMascaraDouble);
-					
-					resultadoDecimal = mascara.verificarDecimal();
-					lblDecimal.setText(resultadoDecimal);
-					lblErro.setText("");
-					
-					resultadoBinario = mascara.verificarBinario();
-					lblBinario.setText(resultadoBinario);
-					lblErro.setText("");
-					
-					resultadoIpsDisponiveis = mascara.verificarIpsDisponiveis();
-					lblIpsDisponiveis.setText("Hosts disponiveis: " + resultadoIpsDisponiveis);
-					lblErro.setText("");
 					
 				}
 				
