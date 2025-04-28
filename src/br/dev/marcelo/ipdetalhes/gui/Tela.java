@@ -43,7 +43,7 @@ public class Tela {
 		JFrame tela = new JFrame();
 		tela.setSize(530, 340);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tela.setTitle("Detalhes de um endereço IP");
+		tela.setTitle("DETALHES DE ENDEREÇO IP");
 		tela.setLocationRelativeTo(null);
 		tela.setLayout(null);
 		tela.setResizable(false);
@@ -84,7 +84,7 @@ public class Tela {
 		txtMascara.setBounds(377, 70, 32, 30);
 		
 		buttonVerificar = new JButton();
-		buttonVerificar.setText("VERIFICAR DETALHES DO ENDEREÇO IP");
+		buttonVerificar.setText("EXIBIR DETALHES");
 		buttonVerificar.setBounds(127, 120, 262, 30);
 		
 		lblClasse = new JLabel();
@@ -175,7 +175,7 @@ public class Tela {
 					lblErro.setText("");
 					
 					resultadoIpsDisponiveis = mascara.verificarIpsDisponiveis();
-					lblIpsDisponiveis.setText("IPs disponiveis: " + resultadoIpsDisponiveis);
+					lblIpsDisponiveis.setText("Hosts disponiveis: " + resultadoIpsDisponiveis);
 					lblErro.setText("");
 					
 				}
