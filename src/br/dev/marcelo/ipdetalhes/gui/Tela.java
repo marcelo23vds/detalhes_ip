@@ -178,9 +178,9 @@ public class Tela {
 						lblErro.setText("");
 						
 							
-						double entradaMascaraDouble = Double.parseDouble(entradaMascara);
+						int entradaMascaraInt = Integer.parseInt(entradaMascara);
 						VerificarMascara mascara = new VerificarMascara();
-						mascara.setMascara(entradaMascaraDouble);
+						mascara.setMascara(entradaMascaraInt);
 						
 						resultadoDecimal = mascara.verificarDecimal();
 						lblDecimal.setText(resultadoDecimal);

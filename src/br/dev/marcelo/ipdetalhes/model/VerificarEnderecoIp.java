@@ -16,19 +16,19 @@ public class VerificarEnderecoIp {
 		String classe = null;
 		
 		if (primeiroOcteto >= 0 && primeiroOcteto <= 126) {
-			classe = "Classe A";
+			classe = "IP de Classe A";
 		} else if (primeiroOcteto == 127) {
-			classe = "Reservado para loopback";
+			classe = "IP Reservado para loopback";
 		} else if (primeiroOcteto >= 128 && primeiroOcteto <= 191) {
-			classe = "Classe B";
+			classe = "IP de Classe B";
 		} else if (primeiroOcteto >= 192 && primeiroOcteto <= 223) {
-			classe = "Classe C";
+			classe = "IP de Classe C";
 		} else if (primeiroOcteto >= 224 && primeiroOcteto <= 239) {
-			classe = "Classe D - reservada para multicast";
+			classe = "IP de Classe D - reservada para multicast";
 		} else if (primeiroOcteto >= 240 && primeiroOcteto <= 255) {
-			classe = "Classe E - reservada para uso futuro e experimental";
+			classe = "IP de Classe E - reservada para uso futuro e experimental";
 		} else {
-			classe = "Não faz parte de uma classe";
+			classe = "Este IP não faz parte de uma classe";
 		}
 			
 		return classe;
