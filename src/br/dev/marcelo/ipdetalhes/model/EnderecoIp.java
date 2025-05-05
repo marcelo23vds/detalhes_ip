@@ -2,16 +2,71 @@ package br.dev.marcelo.ipdetalhes.model;
 
 import java.math.BigDecimal;
 
-public class VerificarMascara {
+public class EnderecoIp {
 
+	private double primeiroOcteto;
 	private int mascara;
 	
-	public double getMascara() {
+	public double getPrimeiroOcteto() {
+		return primeiroOcteto;
+	}
+	public void setPrimeiroOcteto(double primeiroOcteto) {
+		this.primeiroOcteto = primeiroOcteto;
+	}
+	public int getMascara() {
 		return mascara;
 	}
-
 	public void setMascara(int mascara) {
 		this.mascara = mascara;
+	}
+	
+	public String verificarClasse() {
+		
+		String classe = null;
+		
+		if (primeiroOcteto >= 0 && primeiroOcteto <= 126) {
+			classe = "IP de Classe A";
+		} else if (primeiroOcteto == 127) {
+			classe = "IP Reservado para loopback";
+		} else if (primeiroOcteto >= 128 && primeiroOcteto <= 191) {
+			classe = "IP de Classe B";
+		} else if (primeiroOcteto >= 192 && primeiroOcteto <= 223) {
+			classe = "IP de Classe C";
+		} else if (primeiroOcteto >= 224 && primeiroOcteto <= 239) {
+			classe = "IP de Classe D - reservada para multicast";
+		} else if (primeiroOcteto >= 240 && primeiroOcteto <= 255) {
+			classe = "IP de Classe E - reservada para uso futuro e experimental";
+		} else {
+			classe = "IP Inválido!";
+		}
+			
+		return classe;
+	}
+	
+	public String verificarSubRedes() {
+		
+		int bitsClasse;
+		
+		if (primeiroOcteto >= 0 && primeiroOcteto <= 126) {
+			bitsClasse = 8;
+		} else if (primeiroOcteto >= 127 && primeiroOcteto <= 191) {
+			bitsClasse = 16;
+		} else if (primeiroOcteto >= 192 && primeiroOcteto <= 223) {
+			bitsClasse = 24;
+		}  else {
+			bitsClasse = 0;
+		}
+		
+		if (bitsClasse == 0) {
+			
+			return (int) Math.pow(2, mascara - bitsClasse) + " (Utilize classe A, B ou C em ambiente real)";
+			
+		} else {
+			
+			return "Sub-Redes: " + (int) Math.pow(2, mascara - bitsClasse);
+			
+		}
+	       
 	}
 	
 	public String verificarDecimal() {
@@ -37,7 +92,7 @@ public class VerificarMascara {
 		}
  
 	} 
-	
+
 	public String verificarBinario() {
 		
 		if (mascara < 8 || mascara > 32) {
@@ -86,5 +141,5 @@ public class VerificarMascara {
 		}
 		
 	}
-	
-} 
+
+}

@@ -8,9 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import br.dev.marcelo.ipdetalhes.model.VerificarEnderecoIp;
-import br.dev.marcelo.ipdetalhes.model.VerificarMascara;
-import br.dev.marcelo.ipdetalhes.model.VerificarSubRedes;
+import br.dev.marcelo.ipdetalhes.model.EnderecoIp;
 
 public class Tela {
 	
@@ -181,7 +179,7 @@ public class Tela {
 						
 //						verificar classe do ip
 						
-						VerificarEnderecoIp endereco = new VerificarEnderecoIp();
+						EnderecoIp endereco = new EnderecoIp();
 						endereco.setPrimeiroOcteto(entradaPrimeiroOctetoDouble);
 						
 						resultadoClasse = endereco.verificarClasse();
@@ -191,7 +189,7 @@ public class Tela {
 						
 //						verificar diferentes formatos de mascara
 						
-						VerificarMascara mascara = new VerificarMascara();
+						EnderecoIp mascara = new EnderecoIp();
 						mascara.setMascara(entradaMascaraInt);
 						
 						resultadoDecimal = mascara.verificarDecimal();
@@ -205,11 +203,11 @@ public class Tela {
 						
 //						verificar as subredes
 						
-						VerificarSubRedes subredes = new VerificarSubRedes();
+						EnderecoIp subredes = new EnderecoIp();
 						subredes.setMascara(entradaMascaraInt);
 						subredes.setPrimeiroOcteto(entradaPrimeiroOctetoDouble);
 						
-						resultadoSubRedes = subredes.calcularSubRedes();
+						resultadoSubRedes = subredes.verificarSubRedes();
 						lblSubRedes.setText(resultadoSubRedes);
 						
 //						limpar a tela caso tenha tido erro anteriormente
