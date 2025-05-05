@@ -33,7 +33,6 @@ public class Tela {
 	private JLabel lblSubRedes;
 	private JLabel lblErro;
 	
-	private String resultadoClasse;
 	private String resultadoDecimal;
 	private String resultadoBinario;
 	private String resultadoIpsDisponiveis;
@@ -177,37 +176,32 @@ public class Tela {
 						
 					} else {
 						
-//						verificar classe do ip
+//						passando parametros
 						
 						EnderecoIp endereco = new EnderecoIp();
 						endereco.setPrimeiroOcteto(entradaPrimeiroOctetoDouble);
 						
-						resultadoClasse = endereco.verificarClasse();
-						lblClasse.setText(resultadoClasse);
-						
 						int entradaMascaraInt = Integer.parseInt(entradaMascara);
+						endereco.setMascara(entradaMascaraInt);
+						
+//						verificando a classe do ip
+						
+						lblClasse.setText(endereco.getClasse());
 						
 //						verificar diferentes formatos de mascara
 						
-						EnderecoIp mascara = new EnderecoIp();
-						mascara.setMascara(entradaMascaraInt);
-						
-						resultadoDecimal = mascara.verificarDecimal();
+						resultadoDecimal = endereco.verificarDecimal();
 						lblDecimal.setText(resultadoDecimal);
 						
-						resultadoBinario = mascara.verificarBinario();
+						resultadoBinario = endereco.verificarBinario();
 						lblBinario.setText(resultadoBinario);
 						
-						resultadoIpsDisponiveis = mascara.verificarIpsDisponiveis();
+						resultadoIpsDisponiveis = endereco.verificarIpsDisponiveis();
 						lblIpsDisponiveis.setText("Hosts disponiveis: " + resultadoIpsDisponiveis);
 						
 //						verificar as subredes
 						
-						EnderecoIp subredes = new EnderecoIp();
-						subredes.setMascara(entradaMascaraInt);
-						subredes.setPrimeiroOcteto(entradaPrimeiroOctetoDouble);
-						
-						resultadoSubRedes = subredes.verificarSubRedes();
+						resultadoSubRedes = endereco.verificarSubRedes();
 						lblSubRedes.setText(resultadoSubRedes);
 						
 //						limpar a tela caso tenha tido erro anteriormente
@@ -216,7 +210,6 @@ public class Tela {
 						
 						
 					}
-					
 					
 				}
 				

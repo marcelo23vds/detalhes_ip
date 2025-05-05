@@ -6,6 +6,7 @@ public class EnderecoIp {
 
 	private double primeiroOcteto;
 	private int mascara;
+	private String classe;
 	
 	public double getPrimeiroOcteto() {
 		return primeiroOcteto;
@@ -20,9 +21,9 @@ public class EnderecoIp {
 		this.mascara = mascara;
 	}
 	
-	public String verificarClasse() {
+	public String getClasse() {
 		
-		String classe = null;
+		//String classe = null;
 		
 		if (primeiroOcteto >= 0 && primeiroOcteto <= 126) {
 			classe = "IP de Classe A";
@@ -42,33 +43,7 @@ public class EnderecoIp {
 			
 		return classe;
 	}
-	
-	public String verificarSubRedes() {
-		
-		int bitsClasse;
-		
-		if (primeiroOcteto >= 0 && primeiroOcteto <= 126) {
-			bitsClasse = 8;
-		} else if (primeiroOcteto >= 127 && primeiroOcteto <= 191) {
-			bitsClasse = 16;
-		} else if (primeiroOcteto >= 192 && primeiroOcteto <= 223) {
-			bitsClasse = 24;
-		}  else {
-			bitsClasse = 0;
-		}
-		
-		if (bitsClasse == 0) {
-			
-			return (int) Math.pow(2, mascara - bitsClasse) + " (Utilize classe A, B ou C em ambiente real)";
-			
-		} else {
-			
-			return "Sub-Redes: " + (int) Math.pow(2, mascara - bitsClasse);
-			
-		}
-	       
-	}
-	
+
 	public String verificarDecimal() {
 		
 		if (mascara < 8 || mascara > 32) {
@@ -142,4 +117,29 @@ public class EnderecoIp {
 		
 	}
 
+	public String verificarSubRedes() {
+		
+		int bitsClasse;
+		
+		if (primeiroOcteto >= 0 && primeiroOcteto <= 126) {
+			bitsClasse = 8;
+		} else if (primeiroOcteto >= 127 && primeiroOcteto <= 191) {
+			bitsClasse = 16;
+		} else if (primeiroOcteto >= 192 && primeiroOcteto <= 223) {
+			bitsClasse = 24;
+		}  else {
+			bitsClasse = 0;
+		}
+		
+		if (bitsClasse == 0) {
+			
+			return "Sub-Redes: " + (int) Math.pow(2, mascara - bitsClasse) + " (Utilize classe A, B ou C)";
+			
+		} else {
+			
+			return "Sub-Redes: " + (int) Math.pow(2, mascara - bitsClasse);
+			
+		}
+	       
+	}
 }
