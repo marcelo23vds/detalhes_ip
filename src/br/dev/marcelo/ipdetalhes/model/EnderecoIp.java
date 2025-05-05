@@ -76,7 +76,7 @@ public class EnderecoIp {
 			
 			int mascaraHexadecimal = 0xFFFFFFFF << (32 - mascara);
 			
-//			os tipos Int sao convertidos para String 
+//			os tipos Int sao convertidos para String  
 //			e o String.format("%8s", ...) formata para ter 8 caracteres em cada octeto
 //			o >>> envia para direita os bits ligados e o & 0xFF limpa os da esquerda
 //			o replace vai substituir o que estiver vazio, ou seja, onde seriam os bits desligados por 0
