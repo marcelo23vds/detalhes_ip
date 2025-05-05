@@ -34,19 +34,4 @@ public class VerificarEnderecoIp {
 		return classe;
 	}
 
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

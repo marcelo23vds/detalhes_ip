@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import br.dev.marcelo.ipdetalhes.model.VerificarEnderecoIp;
 import br.dev.marcelo.ipdetalhes.model.VerificarMascara;
+import br.dev.marcelo.ipdetalhes.model.VerificarSubRedes;
 
 public class Tela {
 	
@@ -31,17 +32,19 @@ public class Tela {
 	private JLabel lblDecimal;
 	private JLabel lblBinario;
 	private JLabel lblIpsDisponiveis;
+	private JLabel lblSubRedes;
 	private JLabel lblErro;
 	
 	private String resultadoClasse;
 	private String resultadoDecimal;
 	private String resultadoBinario;
 	private String resultadoIpsDisponiveis;
+	private String resultadoSubRedes;
 
 	public void criarTela() {
 		
 		JFrame tela = new JFrame();
-		tela.setSize(530, 340);
+		tela.setSize(530, 370);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.setTitle("DETALHES DE ENDEREÇO IP");
 		tela.setLocationRelativeTo(null);
@@ -99,8 +102,11 @@ public class Tela {
 		lblIpsDisponiveis = new JLabel();
 		lblIpsDisponiveis.setBounds(85, 230, 370, 30);
 		
+		lblSubRedes = new JLabel();
+		lblSubRedes.setBounds(85, 250, 370, 30);
+		
 		lblErro = new JLabel();
-		lblErro.setBounds(200, 170, 202, 30);
+		lblErro.setBounds(170, 170, 202, 30);
 		
 		tela.getContentPane().add(lblEntrada);
 		tela.getContentPane().add(txtPrimeiroOcteto);
@@ -118,6 +124,7 @@ public class Tela {
 		tela.getContentPane().add(lblDecimal);
 		tela.getContentPane().add(lblBinario);
 		tela.getContentPane().add(lblIpsDisponiveis);
+		tela.getContentPane().add(lblSubRedes);
 
 		tela.getContentPane().add(lblErro);
 		
@@ -144,11 +151,12 @@ public class Tela {
 					entradaMascara.matches       (".*[^0-9].*") || entradaMascara.matches	    ("") || entradaMascara.matches       (".{3,}") ) 
 				{
 					
-					lblErro.setText("DIGITE UM IP VÁLIDO!");
+					lblErro.setText("DIGITE IP E MÁSCARA VÁLIDOS!");
 					lblClasse.setText("");
 					lblDecimal.setText("");
 					lblBinario.setText("");
 					lblIpsDisponiveis.setText("");
+					lblSubRedes.setText("");
 					
 				} else {
 							
@@ -167,32 +175,47 @@ public class Tela {
 						lblDecimal.setText("");
 						lblBinario.setText("");
 						lblIpsDisponiveis.setText("");
+						lblSubRedes.setText("");
 						
 					} else {
+						
+//						verificar classe do ip
 						
 						VerificarEnderecoIp endereco = new VerificarEnderecoIp();
 						endereco.setPrimeiroOcteto(entradaPrimeiroOctetoDouble);
 						
 						resultadoClasse = endereco.verificarClasse();
 						lblClasse.setText(resultadoClasse);
-						lblErro.setText("");
 						
-							
 						int entradaMascaraInt = Integer.parseInt(entradaMascara);
+						
+//						verificar diferentes formatos de mascara
+						
 						VerificarMascara mascara = new VerificarMascara();
 						mascara.setMascara(entradaMascaraInt);
 						
 						resultadoDecimal = mascara.verificarDecimal();
 						lblDecimal.setText(resultadoDecimal);
-						lblErro.setText("");
 						
 						resultadoBinario = mascara.verificarBinario();
 						lblBinario.setText(resultadoBinario);
-						lblErro.setText("");
 						
 						resultadoIpsDisponiveis = mascara.verificarIpsDisponiveis();
 						lblIpsDisponiveis.setText("Hosts disponiveis: " + resultadoIpsDisponiveis);
+						
+//						verificar as subredes
+						
+						VerificarSubRedes subredes = new VerificarSubRedes();
+						subredes.setMascara(entradaMascaraInt);
+						subredes.setPrimeiroOcteto(entradaPrimeiroOctetoDouble);
+						
+						resultadoSubRedes = subredes.calcularSubRedes();
+						lblSubRedes.setText(resultadoSubRedes);
+						
+//						limpar a tela caso tenha tido erro anteriormente
+						
 						lblErro.setText("");
+						
 						
 					}
 					
