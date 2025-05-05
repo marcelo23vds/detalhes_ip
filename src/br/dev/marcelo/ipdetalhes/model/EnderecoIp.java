@@ -23,8 +23,6 @@ public class EnderecoIp {
 	
 	public String getClasse() {
 		
-		//String classe = null;
-		
 		if (primeiroOcteto >= 0 && primeiroOcteto <= 126) {
 			classe = "IP de Classe A";
 		} else if (primeiroOcteto == 127) {
